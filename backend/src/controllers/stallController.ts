@@ -59,7 +59,12 @@ export class StallController {
 
   createStall = async (req: Request, res: Response): Promise<Response> => {
     try {
-      const stall = await this.stallService.createStall(req.body);
+      const user = (req as any).user;
+      const ownerId = req.body.ownerId || user?.id;
+      const stall = await this.stallService.createStall({
+        ...req.body,
+        ownerId,
+      });
       return res.status(201).json({ status: 'success', data: stall });
     } catch (error) {
       return this.handleError(res, error);

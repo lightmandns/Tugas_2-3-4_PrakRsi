@@ -1,4 +1,5 @@
 import express, { type Request, type Response, type Application } from 'express';
+import cors from 'cors';
 import { sql } from 'drizzle-orm';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from './docs/swagger-output.json' with { type: 'json' };
@@ -16,6 +17,7 @@ import { authRouter } from './routes/authRouter';
 const app: Application = express();
 const PORT: number = 3000;
 
+app.use(cors());
 app.use(express.json());
 
 // Dokumentasi API (Swagger UI) dari spec hasil generate swagger-autogen.

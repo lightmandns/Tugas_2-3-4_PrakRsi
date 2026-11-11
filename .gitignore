@@ -1,2 +1,5 @@
 .env
 node_modules
+dist
+.system_generated
+backend/src/docs/swagger-output.json
